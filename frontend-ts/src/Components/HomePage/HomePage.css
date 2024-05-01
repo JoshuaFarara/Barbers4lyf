@@ -1,0 +1,48 @@
+.welcome {
+  padding-top: 3rem;
+  font-size: 36px;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+}
+.background {
+  background-color: grey;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+.image {
+  background-image: url(../../../Images/Imagee.jpg);
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: contain;
+  opacity: 20%;
+  position: fixed;
+}
+.missionStatement {
+  text-align: center;
+  font-size: 26px;
+  padding-top: 1rem;
+}
+.button {
+  width: 30rem;
+  height: 20rem;
+  background-image: url(../../../Images/Imagee.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: flex;
+  border-color: black;
+  border-width: 0.05rem;
+  /* transform: translate3d(20rem); */
+}
+.buttonPosition {
+  padding-top: 40rem;
+  padding-left: 20rem;
+}
+.buttonTitle {
+  font-size: 36px;
+  color: black;
+  text-align: center;
+}
