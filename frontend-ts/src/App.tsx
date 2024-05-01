@@ -1,4 +1,4 @@
-import react from "react"
+import React from "react"
 
 function App() {
 
@@ -10,3 +10,4 @@ function App() {
 }
 
 export default App
+         
