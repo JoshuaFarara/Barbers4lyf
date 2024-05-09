@@ -1,5 +1,6 @@
 import "./HomePage.css";
-import { Button } from "antd";
+// import { Button } from "antd";
+
 function HomePage() {
   return (
     <>
@@ -19,7 +20,7 @@ function HomePage() {
       </div>
       <div className="buttonPosition">
         <div>JoinTheTeam</div>
-        <Button className="button"></Button>
+        {/* <Button className="button"></Button> */}
       </div>
     </>
   );
