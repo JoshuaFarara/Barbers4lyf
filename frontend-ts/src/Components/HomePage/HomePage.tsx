@@ -8,7 +8,6 @@ function HomePage() {
         <div className="image"></div>
         <div className="welcome">
           <div>Welcome to Barbers4lyf </div>
-          <div>User</div>
           <br></br>
           <div>Our Mission</div>
           <div className="missionStatement">
