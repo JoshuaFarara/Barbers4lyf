@@ -5,6 +5,7 @@ import Note from "../Components/Note/Note"
 import { NoteType } from "../Components/Note/Note"; // Import the NoteType interface
 
 
+
 function Home() {
   const [notes, setNotes] = useState<NoteType[]>([]);
   const [content, setContent] = useState("");
@@ -50,21 +51,20 @@ function Home() {
 
   return (
     <div>
-      <div className={"background"}>
-        
-        <div className="welcome">
+      <div>        
+        <div>
           <div>Welcome , to Barbers4lyf </div>
           <div></div>
           <br></br>
           <div>Our Mission</div>
-          <div className="missionStatement">
+          <div>
             Encourage people that use the skill of barbering to lose any fear in
             their abilities and teach new capabilities for barbers to start
             other business ventures.
           </div>
         </div>
       </div>
-      <div className="buttonPosition">
+      <div>
         <div>JoinTheTeam</div>
         {/* <Button className="button"></Button> */}
       </div>
@@ -76,29 +76,31 @@ function Home() {
         ))}
       </div>
       <h2>Create a Note</h2>
-      <form onSubmit={createNote}>
-        <label htmlFor="title">Title:</label>
-        <br />
-        <input
-          type="text"
-          id="title"
-          name="title"
-          required
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-        />
-        <label htmlFor="content">Content:</label>
-        <br />
-        <textarea
-          id="content"
-          name="content"
-          required
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        ></textarea>
-        <br />
-        <input type="submit" value="Submit"></input>
-      </form>
+      <div className="note-container">
+        <form onSubmit={createNote}>
+          <label className="note-title" htmlFor="title">Title:</label>
+          <br />
+          <input
+            type="text"
+            id="title"
+            name="title"
+            required
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+          />
+          <label htmlFor="content">Content:</label>
+          <br />
+          <textarea
+            id="content"
+            name="content"
+            required
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          ></textarea>
+          <br />
+          <input type="submit" value="Submit"></input>
+        </form>
+      </div>
     </div>
 
 
