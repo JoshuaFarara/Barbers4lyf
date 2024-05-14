@@ -70,7 +70,7 @@ function Home() {
       </div>
 
       <div>
-        <h2>Notes</h2>
+        <h2>My Notes</h2>
         {notes.map((note) => (
           <Note note={note} onDelete={deleteNote} key={note.id} />
         ))}
