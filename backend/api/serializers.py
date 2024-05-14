@@ -1,6 +1,6 @@
 '''
 Accepting JSON data and returning the response to the request
-Serializer is ablte to take a python objkect and convert to JSOn and visa versa
+Serializer is ablte to take a python objkect and convert to JSON and visa versa
 
 '''
 from django.contrib.auth.models import User
