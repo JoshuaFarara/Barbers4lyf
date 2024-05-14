@@ -1,5 +1,7 @@
 import "./HomePage.css";
-import { Button } from "antd";
+// import { Button } from "antd";
+import Button from 'react-bootstrap/Button';
+
 function HomePage() {
   return (
     <>
@@ -7,7 +9,6 @@ function HomePage() {
         <div className="image"></div>
         <div className="welcome">
           <div>Welcome to Barbers4lyf </div>
-          <div>User</div>
           <br></br>
           <div>Our Mission</div>
           <div className="missionStatement">
@@ -19,7 +20,8 @@ function HomePage() {
       </div>
       <div className="buttonPosition">
         <div>JoinTheTeam</div>
-        <Button className="button"></Button>
+        {/* <Button className="button"></Button> */}
+        <Button variant="primary">Primary</Button>{' '}
       </div>
     </>
   );

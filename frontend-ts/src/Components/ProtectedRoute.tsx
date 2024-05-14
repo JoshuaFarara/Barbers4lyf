@@ -2,10 +2,15 @@ import {Navigate} from "react-router-dom"
 import {jwtDecode} from "jwt-decode"
 import api from "../api"
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants"
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 
-function ProtectedRoute({ children }) {
-    const [isAuthorized, setIsAuthorized] = useState(null);
+interface ProtectedRouteProps {
+    children: ReactNode;
+  }
+
+function ProtectedRoute({ children }: ProtectedRouteProps) {
+    const [isAuthorized, setIsAuthorized] =  useState<boolean | null>(null);
+
 
     useEffect(() => {
         auth().catch(() => setIsAuthorized(false))
@@ -17,7 +22,7 @@ function ProtectedRoute({ children }) {
         try {
             // 2. send it to the backend using post, handles baseURL
             const res = await api.post("/api/token/refresh/", {
-                refresh: refreshToken,
+                refresh: refreshToken
             });
             // 3. successfully got a token
             if (res.status === 200) {
@@ -39,7 +44,7 @@ function ProtectedRoute({ children }) {
             setIsAuthorized(false);
             return;
         }
-        const decoded = jwtDecode(token);
+        const decoded: any = jwtDecode(token);
         const tokenExpiration = decoded.exp;
         const now = Date.now() / 1000;
 

@@ -1,9 +1,12 @@
 import React from "react";
+// import ReactDOM from "react-dom";
 import ReactDOM from "react-dom/client";
-import HomePage from "./Components/HomePage/HomePage";
+import App from './App.tsx'
+
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <HomePage />
+    <App />
   </React.StrictMode>
 );
+

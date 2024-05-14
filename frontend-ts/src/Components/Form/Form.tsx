@@ -1,12 +1,16 @@
 import { useState } from "react";
-import api from "../api";
+import api from "../../api";
 import { useNavigate } from "react-router-dom";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
-import "../styles/Form.css"
-import LoadingIndicator from "./LoadingIndicator";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constants";
+import "./Form.css"
+import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 
+interface FormProps {
+    route: string;
+    method: "login" | "register";
+  }
 
-function Form({ route, method }) {
+function Form({ route, method }: FormProps) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -14,7 +18,7 @@ function Form({ route, method }) {
 
     const name = method === "login" ? "Login" : "Register";
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         setLoading(true);
         e.preventDefault();
 
@@ -23,7 +27,7 @@ function Form({ route, method }) {
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-                navigate("/")
+                navigate("/home")
             } else {
                 navigate("/login")
             }
