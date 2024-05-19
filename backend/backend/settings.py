@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "api",
     "rest_framework",
-    "corsheaders"
+    "corsheaders",
+    "flipcards"
 ]
 
 MIDDLEWARE = [
@@ -95,24 +96,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 #SQLite3
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-#MySQL
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'barbers4lyf',
-#         'USER': 'root',
-#         'PASSWORD': 'ftadev',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+#MySQL
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'barbers4lyf',
+        'USER': 'root',
+        'PASSWORD': 'ftadev',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
+    }
+}
 
 # #SQLlite3 and Mysql
 # DATABASES = {
