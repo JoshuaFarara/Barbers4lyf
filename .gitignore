@@ -1,1 +1,6 @@
 env/
+db.sqlite3
+frontend-ts/.env
+backend/.env
+.DS_Store
+__pycache__

@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ftadev
+
+  backend:
+    volumes:
+      - static
+    environment:
+      - /backend/.env
+    build:
+      context: ./backend
+    ports: -8000:8000
+
+  frontend:
+    build:
+      context: ./frontend-ts
+    volumes:
+      - ./frontend-ts:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - /frontend-ts/.env
+
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - static:/static
+      - frontend-ts:/var/www/frontend-ts
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - frontend-ts
+
+volumes:
+  static:
+  frontend-ts:
