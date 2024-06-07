@@ -1,0 +1,24 @@
+.ourMission{
+    background-color: grey;
+    border-color: black;
+    width: 50%;
+    position: flex;
+}
+.aboutTheCreators{
+    background-color: grey;
+    border-color: black;
+    width: 50%;
+    position: flex;
+}
+.fAQ{
+    background-color: grey;
+    border-color: black;
+    width: 50%;
+    position: flex;
+}
+.help{
+    background-color: grey;
+    border-color: black;
+    width: 50%;
+    position: flex;        
+}
