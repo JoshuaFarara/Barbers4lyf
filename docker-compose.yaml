@@ -1,31 +1,54 @@
 version: '3.8'
 
 services:
-
+  
+  # MySql Database
   db:
-    image: mysql
+    container_namne: barbers4lyf-db
+    image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ftadev
-
-  backend:
+      MYSQL_DATABASE: barbers4lyf
     volumes:
-      - static
-    environment:
-      - /backend/.env
+      - db-data:/var/lib/mysql
+
+  # Django backend 
+  backend:
+    container_namne: barbers4lyf-backend  
     build:
       context: ./backend
-    ports: -8000:8000
+    volumes:
+      - static:/app/static
+      # - ./backend/entrypoint.sh:/app/entrypoint.sh
+      # - ./backend/wait-for-it.sh:/wait-for-it.sh  # Mount wait-for-it script
+    environment:
+      - DB_HOST=db
+      # - DJANGO_SETTINGS_MODULE=backend.settings
+    env_file:
+      - ./backend/.env
+    ports: 
+      - 8000:8000
+    depends_on:
+      - db
+    networks:
+      - app-network
+    # command: ["bash", "/app/entrypoint.sh"]
 
+  # Web Application - React Typescripts by Vite
   frontend:
+    container_namne: barbers4lyf-frontend  
     build:
       context: ./frontend-ts
     volumes:
       - ./frontend-ts:/app
+      - node_modules:/usr/src/app/node_modules
     ports:
-      - "3000:3000"
-    environment:
+      - 3000:3000
+    env_file:
       - /frontend-ts/.env
+    networks:
+      - app-network
 
   nginx:
     build:
@@ -37,8 +60,15 @@ services:
       - "80:80"
     depends_on:
       - backend
-      - frontend-ts
+      - frontend
+    networks:
+      - app-network
 
 volumes:
   static:
+  db-data:
   frontend-ts:
+  node_modules:
+
+networks:
+  app-network:

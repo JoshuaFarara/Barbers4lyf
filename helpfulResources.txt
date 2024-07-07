@@ -13,3 +13,22 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 
 after environment is active, run command below for security
 Set-ExecutionPolicy Default -Scope Process
+
+# Terminal Docker-compse commands
+docker-compose logs frontend
+docker-compose logs backend
+docker-compose logs nginx
+
+docker-compose down
+docker-compose up --build
+docker-compose up -d
+
+docker-compose run frontend npm i && docker-compose up --build
+
+docker-compose ps
+
+docker network inspect barbers4lyf_app-network
+
+
+Remove-Item -Recurse -Force .\node_modules
+Remove-Item -Force .\package-lock.json
