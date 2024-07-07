@@ -10,7 +10,7 @@ COPY ./requirements.txt /app
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 # wait-for-it dependency
-# RUN apk add --no-cache bash
+RUN apk add --no-cache netcat-openbsd
 
 # Copy entrypoint script and make it executable
 COPY ./entrypoint.sh /app/entrypoint.sh

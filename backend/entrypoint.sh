@@ -1,8 +1,9 @@
 #!/bin/ash
 set -e
 
-# Wait for the database to be ready
-# /wait-for-it.sh db:3306 --timeout=30 --strict -- echo "Database is up"
+# Ensure the database service name is correctly specified
+echo "Sleeping for a while to ensure database is up..."
+sleep 10
 
 # wait for database to be ready
 while ! nc -z db 3306; do

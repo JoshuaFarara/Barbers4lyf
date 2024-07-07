@@ -4,7 +4,6 @@ services:
   
   # MySql Database
   db:
-    container_namne: barbers4lyf-db
     image: mysql:5.7
     restart: always
     environment:
@@ -12,19 +11,19 @@ services:
       MYSQL_DATABASE: barbers4lyf
     volumes:
       - db-data:/var/lib/mysql
+    networks:
+      app-network:
+        aliases:
+          - db
 
   # Django backend 
   backend:
-    container_namne: barbers4lyf-backend  
     build:
       context: ./backend
     volumes:
       - static:/app/static
-      # - ./backend/entrypoint.sh:/app/entrypoint.sh
-      # - ./backend/wait-for-it.sh:/wait-for-it.sh  # Mount wait-for-it script
     environment:
       - DB_HOST=db
-      # - DJANGO_SETTINGS_MODULE=backend.settings
     env_file:
       - ./backend/.env
     ports: 
@@ -33,11 +32,10 @@ services:
       - db
     networks:
       - app-network
-    # command: ["bash", "/app/entrypoint.sh"]
+    entrypoint: ["/app/entrypoint.sh"]
 
   # Web Application - React Typescripts by Vite
   frontend:
-    container_namne: barbers4lyf-frontend  
     build:
       context: ./frontend-ts
     volumes:
