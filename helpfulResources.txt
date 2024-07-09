@@ -24,7 +24,7 @@ docker-compose logs nginx
 
 docker-compose down
 docker-compose up --build
-docker-compose up -d
+docker-compose up -dp
 
 docker-compose run frontend npm i && docker-compose up --build
 

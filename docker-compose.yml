@@ -40,6 +40,7 @@ services:
       context: ./frontend-ts
     volumes:
       - ./frontend-ts:/app
+      - frontend-dist:/app/dist
       - node_modules:/usr/src/app/node_modules
     ports:
       - 3000:3000
@@ -50,10 +51,10 @@ services:
 
   nginx:
     build:
-      context: ./nginx
+      context: ./nginx 
     volumes:
       - static:/static
-      - frontend-ts:/var/www/frontend-ts
+      - frontend-dist:/var/www/frontend-ts      
     ports:
       - "80:80"
     depends_on:
@@ -65,7 +66,7 @@ services:
 volumes:
   static:
   db-data:
-  frontend-ts:
+  frontend-dist:
   node_modules:
 
 networks:
