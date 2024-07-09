@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./Components/ProtectedRoute"
 import HomePage from "./Components/HomePage/HomePage";
+import AboutPage from "./Components/AboutPage/AboutPage."
 
 function Logout() {
   localStorage.clear()
@@ -28,6 +29,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route path="/about" element={<AboutPage/>}></Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/homepage" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
