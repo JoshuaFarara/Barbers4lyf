@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  
+  # MySql Database
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ftadev
+      MYSQL_DATABASE: barbers4lyf
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      app-network:
+        aliases:
+          - db
+
+  # Django backend 
+  backend:
+    build:
+      context: ./backend
+    volumes:
+      - static:/app/static
+    environment:
+      - DB_HOST=db
+    env_file:
+      - ./backend/.env
+    ports: 
+      - 8000:8000
+    depends_on:
+      - db
+    networks:
+      - app-network
+    entrypoint: ["/app/entrypoint.sh"]
+
+  # Web Application - React Typescripts by Vite
+  frontend:
+    build:
+      context: ./frontend-ts
+    volumes:
+      - ./frontend-ts:/app
+      - frontend-dist:/app/dist
+      - node_modules:/usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    env_file:
+      - /frontend-ts/.env
+    networks:
+      - app-network
+
+  nginx:
+    build:
+      context: ./nginx 
+    volumes:
+      - static:/static
+      - frontend-dist:/var/www/frontend-ts      
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - app-network
+
+volumes:
+  static:
+  db-data:
+  frontend-dist:
+  node_modules:
+
+networks:
+  app-network:
