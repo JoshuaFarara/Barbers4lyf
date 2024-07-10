@@ -35,3 +35,7 @@ docker network inspect barbers4lyf_app-network
 
 Remove-Item -Recurse -Force .\node_modules
 Remove-Item -Force .\package-lock.json
+
+
+# Access the MySQL container to check the database directly:
+docker-compose exec db mysql -u root -p
