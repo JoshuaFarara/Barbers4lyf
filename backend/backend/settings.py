@@ -26,18 +26,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 Settings of SECRET_KEY, DEBUG, and ALLOWED_HOST prior to Dockerizing
 '''
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--9p21$aulsswv7dx^_wheia24=m(j&ka@8-un-(&aq=(a)q^_='
+# SECRET_KEY = 'django-insecure--9p21$aulsswv7dx^_wheia24=m(j&ka@8-un-(&aq=(a)q^_='
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get("SECRET_KEY")
-# DEBUG = os.environ.get("DEBUG")
-# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(",")
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG') == 'True'
+allowed_hosts = os.getenv('ALLOWED_HOSTS')
+if allowed_hosts:
+    ALLOWED_HOSTS = allowed_hosts.split(',')
+else:
+    ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(",")
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -116,11 +121,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'barbers4lyf',
-        'USER': 'root',
-        'PASSWORD': 'ftadev',
-        'HOST': 'db',
-        'PORT': '3306'
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 

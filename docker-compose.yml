@@ -7,8 +7,8 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ftadev
-      MYSQL_DATABASE: barbers4lyf
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
     volumes:
       - db-data:/var/lib/mysql
     networks:
